@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>themeLeaf demo</title>
+</head>
+<body>
+<p>Hello!,welcom to Thymeleaf's world</p>
+
+<p th:text="${'小明,'+welcome}"></p>
+
+<p th:text="${#calendars.format(now,'yyyy-MM-dd HH:MM:ss')}"></p>
+
+<p><a th:href="@{/student/getPageStudent(page=2,rows=2)}"  >获取学生</a></p>
+
+<table border="1">
+    <tr th:each="item,iterStat:${teachers}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.age}"></td>
+    </tr>
+</table>
+</body>
+</html>  

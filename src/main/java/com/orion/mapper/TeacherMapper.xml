@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orion.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.orion.domain.Teacher" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.orion.domain.Teacher" extends="BaseResultMap" >
+    <result column="student" property="student" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, age, name
+  </sql>
+  <sql id="Blob_Column_List" >
+    student
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.orion.domain.Teacher" >
+    insert into teacher (id, age, name, 
+      student)
+    values (#{id,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{student,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.orion.domain.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="student != null" >
+        student,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="student != null" >
+        #{student,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.orion.domain.Teacher" >
+    update teacher
+    <set >
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="student != null" >
+        student = #{student,jdbcType=BINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.orion.domain.Teacher" >
+    update teacher
+    set age = #{age,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      student = #{student,jdbcType=BINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.orion.domain.Teacher" >
+    update teacher
+    set age = #{age,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from teacher
+  </select>
+</mapper>
