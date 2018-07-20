@@ -1,8 +1,9 @@
 package com.orion.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Student {
+public class Student implements Serializable{
     private Integer id;
 
     private String name;
@@ -41,5 +42,15 @@ public class Student {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", time=" + time +
+                '}';
     }
 }
