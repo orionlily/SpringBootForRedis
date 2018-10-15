@@ -7,7 +7,7 @@
     <groupId>com.orion</groupId>
     <artifactId>SpringBootForRedis</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -125,7 +125,13 @@
         <version>1.3.2</version>
     </dependency>
 
-    <!-- 分页插件 -->
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+
+        <!-- 分页插件 -->
     <dependency>
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper</artifactId>

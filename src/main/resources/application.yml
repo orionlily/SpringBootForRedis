@@ -6,6 +6,7 @@ server:
   session:
     timeout: 30
 spring:
+
   #数据库信息
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -46,6 +47,22 @@ spring:
       encoding: UTF-8
       content-type: text/html
       mode: HTML5
+
+  #redis配置
+  redis:
+    host: 192.168.1.102
+    port: 6379
+    password: 123456
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+      max-wait: 1
+    timeout: 0
+    database: 0
+    ssl: false
+
+
 #mybatis配置
 mybatis:
   type-aliases-package: com.orion.domain
